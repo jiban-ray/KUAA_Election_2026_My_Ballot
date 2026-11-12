@@ -44,8 +44,26 @@ const photoIds = new Set([
   '191652','201538','940221','940338','970232',
   '980821','991036'
 ]);
-function candidatePhoto(c){
-  if(photoIds.has(c.student_id))return `<img class="candidate-photo" src="images/${esc(c.student_id)}.jpg" alt="Photo of ${esc(c.name)}" loading="lazy" onerror="this.style.visibility='hidden'">`;
+function candidatePhoto(c) {
+  if (photoIds.has(c.student_id)) {
+    const id = esc(c.student_id);
+    return `<img class="candidate-photo"
+      src="images/${id}.jpg"
+      alt="Photo of ${esc(c.name)}"
+      loading="lazy"
+      onerror="
+        if (!this.dataset.triedPng) {
+          this.dataset.triedPng = '1';
+          this.src = 'images/${id}.png';
+        } else if (!this.dataset.triedJpeg) {
+          this.dataset.triedJpeg = '1';
+          this.src = 'images/${id}.jpeg';
+        } else {
+          this.onerror = null;
+          this.style.visibility = 'hidden';
+        }
+      ">`;
+  }
   return `<span class="candidate-photo photo-empty" aria-hidden="true">♙</span>`;
 }
 const byPos=Object.fromEntries(positions.map(p=>[p.name,candidates.filter(c=>c.position===p.name)]));
