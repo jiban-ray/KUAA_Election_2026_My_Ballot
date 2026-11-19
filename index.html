@@ -120,8 +120,28 @@
   .print-candidate .candidate-photo{display:block!important;visibility:visible!important}
   .print-candidate .photo-empty{display:flex!important}
 }
-</style></head><body><header class="site-header"><div class="header-inner"><div class="header-brand"><div class="sub small">KHULNA UNIVERSITY ALUMNI ASSOCIATION</div><h1>KUAA Election 2026</h1><div class="header-all-candidates">সকল প্রার্থী এক জায়গায়।</div><div class="tagline"><div class="tagline-primary">ভোট হউক তথ্যভিত্তিক</div><div class="tagline-secondary">আপনার ভোট, আপনার সিদ্ধান্ত</div></div></div><div class="ballot-title header-center-badge">My Ballot</div><div class="header-taglines"><div class="header-benefits"><div class="header-benefits-title">My Ballot ভোট পরিকল্পনার সহায়ক টুল।</div><ul><li>ভোট দেওয়ার সময় বাঁচবে।</li><li>৫০টি পদের ভোট নির্বাচনে বিভ্রান্তি কমবে।</li><li>অন্যের প্রভাব এড়িয়ে স্বাধীনভাবে সিদ্ধান্ত নিতে সাহায্য করবে।</li><li>পছন্দের প্রার্থীকে ভুলে যাওয়ার আশঙ্কা কমবে।</li></ul></div></div></div></header><main><div class="banner"><strong>আপনার পছন্দে গড়ুন KUAA কমিটি!</strong> কোনো লগইন বা অ্যাকাউন্ট ছাড়াই পদভিত্তিক পছন্দের প্রার্থীদের পাশে টিক দিন। নিচ থেকে আপনার তালিকা PDF আকারে সংরক্ষণ করুন। ভোটের দিন সময় বাঁচাতে এবং এতগুলো পদে প্রার্থী বাছাই সহজ করতেই এই উদ্যোগ।<p class="note"><b>বি.দ্র.:</b> সব প্রার্থীর ছবি এখনো পাওয়া যায়নি। তথ্য হালনাগাদ চলছে। আপনার পরামর্শ ও সংশোধন স্বাগত।</p></div><div class="panel"><div class="sectionhead"><h2>My selection progress</h2><b id="total">0 / 48</b></div><div class="progress"><div id="bar"></div></div><p class="note">Plan up to 48 contested selections. Two additional seats are elected unopposed (50 positions in total). You may leave positions incomplete.</p><div class="toolbar"><input id="search" placeholder="Search name, student ID, discipline or position" type="search"/><label class="selected-filter"><input id="onlySelected" type="checkbox"/> Show my selected candidates</label><button class="btn secondary" id="clear">Clear all</button></div></div><div id="sections"></div><div class="panel" id="summary"><div id="printHeader"><h1>KUAA Election 2026</h1><h2>My Ballot</h2><p><strong>ভোট হউক তথ্যভিত্তিক</strong></p><p>আপনার ভোট, আপনার সিদ্ধান্ত</p><p>Personal planning copy — Final candidate list 12 Nov 2026. Not an official ballot.</p></div><h2>My Ballot Summary</h2><p class="note">Elected unopposed: Md. Fahad Al Zobayer (150617), Md. Nuruzzaman (001418).</p><div id="summaryBody">No candidates selected yet.</div></div>
-</main><footer class="site-footer noprint">
+
+/* PDF footer */
+#pdfFooter {
+  display: none;
+}
+
+@media print {
+  #pdfFooter {
+    display: block !important;
+    text-align: center;
+    font-size: 10px;
+    color: #555;
+    padding: 12px 0;
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+  }
+}
+
+</style></head><body><header class="site-header"><div class="header-inner"><div class="header-brand"><div class="sub small">KHULNA UNIVERSITY ALUMNI ASSOCIATION</div><h1>KUAA Election 2026</h1><div class="header-all-candidates">সকল প্রার্থী এক জায়গায়।</div><div class="tagline"><div class="tagline-primary">ভোট হউক তথ্যভিত্তিক</div><div class="tagline-secondary">আপনার ভোট, আপনার সিদ্ধান্ত</div></div></div><div class="ballot-title header-center-badge">My Ballot</div><div class="header-taglines"><div class="header-benefits"><div class="header-benefits-title">My Ballot ভোট পরিকল্পনার সহায়ক টুল।</div><ul><li>ভোট দেওয়ার সময় বাঁচবে।</li><li>৫০টি পদের ভোট নির্বাচনে বিভ্রান্তি কমবে।</li><li>অন্যের প্রভাব এড়িয়ে স্বাধীনভাবে সিদ্ধান্ত নিতে সাহায্য করবে।</li><li>পছন্দের প্রার্থীকে ভুলে যাওয়ার আশঙ্কা কমবে।</li></ul></div></div></div></header><main><div class="banner"><strong>আপনার পছন্দে গড়ুন KUAA কমিটি!</strong> কোনো লগইন বা অ্যাকাউন্ট ছাড়াই পদভিত্তিক পছন্দের প্রার্থীদের পাশে টিক দিন। নিচ থেকে আপনার তালিকা PDF আকারে সংরক্ষণ করুন। ভোটের দিন সময় বাঁচাতে এবং এতগুলো পদে প্রার্থী বাছাই সহজ করতেই এই উদ্যোগ।<p class="note"><b>বি.দ্র.:</b> সব প্রার্থীর ছবি এখনো পাওয়া যায়নি। তথ্য হালনাগাদ চলছে। আপনার পরামর্শ ও সংশোধন স্বাগত।</p></div><div class="panel"><div class="sectionhead"><h2>My selection progress</h2><b id="total">0 / 48</b></div><div class="progress"><div id="bar"></div></div><p class="note">Plan up to 48 contested selections. Two additional seats are elected unopposed (50 positions in total). You may leave positions incomplete.</p><div class="toolbar"><input id="search" placeholder="Search name, student ID, discipline or position" type="search"/><label class="selected-filter"><input id="onlySelected" type="checkbox"/> Show my selected candidates</label><button class="btn secondary" id="clear">Clear all</button></div></div><div id="sections"></div><div class="panel" id="summary"><div id="printHeader"><h1>KUAA Election 2026</h1><h2>My Ballot</h2><p><strong>ভোট হউক তথ্যভিত্তিক</strong></p><p>আপনার ভোট, আপনার সিদ্ধান্ত</p><p>Personal planning copy — Not an official ballot.</p></div><h2>My Ballot Summary</h2><p class="note">Elected unopposed: Md. Fahad Al Zobayer (150617), Md. Nuruzzaman (001418).</p><div id="summaryBody">No candidates selected yet.</div></div>
+</main>
+<div id="pdfFooter">Designed &amp; Developed by Jiban, ECE'01</div>
+<footer class="site-footer noprint">
 <p>ব্যক্তিগত ও স্বতন্ত্র উদ্যোগ। অনিচ্ছাকৃত ভুল ক্ষমাসুন্দর দৃষ্টিতে দেখবেন।</p>
 <div class="footer-heading">মতামত, সংশোধন ও যোগাযোগ</div>
 <strong>জীবন, ইসিই ০১ ব্যাচ</strong>
