@@ -188,37 +188,10 @@ function selected(){return positions.map(p=>({p,cs:byPos[p.name].filter(c=>chose
 }
 function summaryText(){return ['KUAA Election 2026 — My Ballot','Personal planning copy — not an official ballot','Selected '+total()+' of 48 contested seats (2 elected unopposed)','',...selected().flatMap(({p,cs})=>[p.name+' ('+cs.length+'/'+p.limit+')',...cs.map(c=>'- '+c.name+' | '+c.discipline+' | ID '+c.student_id),'']),'Elected unopposed: Md. Fahad Al Zobayer (150617); Md. Nuruzzaman (001418)','Source: Election Commission Final Candidate List, 12 November 2026'].join('\n')}
 document.getElementById('search').addEventListener('input',render);document.getElementById('onlySelected').addEventListener('change',render);document.getElementById('clear').addEventListener('click',()=>{if(confirm('Clear all your selected candidates?')){chosen={};localStorage.removeItem(storageKey);render()}});// Wait for all selected-candidate photos (including extension fallbacks) before printing.
-async function printBallotWithPhotos() {
-  const button = document.getElementById('pdf');
-  const originalLabel = button.textContent;
-  button.disabled = true;
-  button.textContent = 'Preparing photos for PDF...';
-  try {
-    // Rebuild the print summary to start all selected image requests immediately.
-    renderSummary();
-    const imgs = [...document.querySelectorAll('#summaryBody .print-candidate img.candidate-photo')];
-    await Promise.all(imgs.map(img => new Promise(resolve => {
-      if (img.complete && img.naturalWidth > 0) return resolve();
-      let finished = false;
-      const done = () => { if (!finished) { finished = true; resolve(); } };
-      // Errors can trigger a new filename extension through candidatePhotoError.
-      const check = () => {
-        if (!img.isConnected || (img.complete && img.naturalWidth > 0)) return done();
-        if (img.complete && !img.naturalWidth && !img.hasAttribute('onerror')) return done();
-        setTimeout(check, 100);
-      };
-      img.addEventListener('load', done, { once: true });
-      img.addEventListener('error', () => setTimeout(check, 50));
-      check();
-      setTimeout(done, 12000); // Avoid blocking print if an image server is slow.
-    })));
-    // Allow the browser one rendering pass to paint the now-loaded images.
-    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-    window.print();
-  } finally {
-    button.disabled = false;
-    button.textContent = originalLabel;
-  }
+
+function printBallotWithPhotos() {
+  window.print();
 }
+
 document.getElementById('pdf').addEventListener('click', printBallotWithPhotos);document.getElementById('email').addEventListener('click',()=>{const body=encodeURIComponent(summaryText());if(body.length>12000){alert('Your list is too long for a reliable email link. Please use Copy List and paste it into an email.');return}window.location.href='mailto:?subject='+encodeURIComponent('KUAA Election 2026 — My Ballot — Personal Copy')+'&body='+body});document.getElementById('copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(summaryText());alert('Copied. Paste into your email or document.')}catch(e){alert('Copy is unavailable here. Please use Email My List.')}});render();
 </script></body></html>
